@@ -1,0 +1,11 @@
+--- # Check for missing updates on Windows hosts
+- hosts: windows
+  tasks:
+  - name: Check for missing updates
+    win_updates: 
+      category_names: CriticalUpdates
+      state: searched
+      log_path: c:\missing_updates.txt	
+    register: missing_updates
+  - name: List missing updates
+    debug: var=missing_updates

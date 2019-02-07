@@ -1,0 +1,11 @@
+--- # Install specific KB update on Windows hosts
+- hosts: windows
+  tasks:
+  - name: install KB4073819 update only
+    win_updates:
+      whitelist:
+      - KB4073819
+      state: installed
+      reboot: yes 
+
+

@@ -1,0 +1,14 @@
+--- # Install critical and security updates on windows hosts
+- hosts: windows
+  connection: winrm
+  tasks:
+  - name: install windows updates
+    win_updates:
+      category_names:
+        - CriticalUpdates
+      reboot: yes
+      log_path: c:\installed__updates.txt
+    register: installed_updates
+  - name: print installed updates
+    debug: var=installed_updates
+

@@ -1,0 +1,19 @@
+---
+- hosts: lab
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: update cache
+      apt:
+        update_cache: yes
+    - name: update packages
+      apt:  
+        name: "*"
+        state: latest
+      register: update_status
+
+    - name: log status
+      copy:
+        content: "{{ update_status }}"
+        dest: /home/ansible/linux_updates.log
